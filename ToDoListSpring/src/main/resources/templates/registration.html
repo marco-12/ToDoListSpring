@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Registrazione</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../../../css/screen.css" th:href="@{/css/screen.css}" />
+</head>
+<body>
+	<div class="container h-100">
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="form-container" style="background-color:#90EE90;">
+				<a th:href="@{/}"><button class="btn btn-md btn-warning btn-block" type="Submit">Vai alla pagina di Login</button></a>
+				<form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<h1>Registration Form</h1>
+					<div class="form-group">
+						<label for="email">Email</label>:<input type="text" th:field="*{email}" placeholder="Email" class="form-control" /> 
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>:<input type="password" th:field="*{password}" placeholder="Password" class="form-control" />  
+					</div> 
+					<div class="form-group">
+						<label for="profileImage">Profile image</label>:<input id="image" class="form-control" type="file" name="image" th:field="*{image}" /> 
+					</div>
+	                <div class="form-group">
+	                	<div class="row">
+	                    	<div class="col-sm-6 col-sm-offset-3">					
+								<input type="submit" class="form-control btn btn-primary" value="Register User" />
+							</div>
+						</div>
+					</div>
+					<h2>
+						<span class="text-success" th:utext="${successMessage}"></span>
+					</h2>
+			
+				</form>		
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
