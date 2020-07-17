@@ -1,17 +1,26 @@
 package it.dstech.models;
 
-import java.time.LocalDate;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class User {
@@ -20,9 +29,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Length(min = 5, message = "*Your user name must have at least 5 characters")
-    @NotEmpty(message = "*Please provide a user name")
-	private String username;
 
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
     @NotEmpty(message = "*Please provide your password")
@@ -31,9 +37,21 @@ public class User {
 	@Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
 	private String email;
-
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private LocalDate birthday;
+	
+	@Lob
+	private byte[] imageProfile;
+	
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_activities",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "activity_id"))
+    private List<Attivita> activities;
+	
+	@Transient
+    private MultipartFile image;
 
 	public Long getId() {
 		return id;
@@ -43,12 +61,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -59,20 +77,38 @@ public class User {
 		this.email = email;
 	}
 
-	public LocalDate getBirthday() {
-		return birthday;
+	public byte[] getImageProfile() {
+		return imageProfile;
 	}
 
-	public void setBirthday(LocalDate birthday) {
-		this.birthday = birthday;
+	public void setImageProfile(byte[] imageProfile) {
+		this.imageProfile = imageProfile;
 	}
 
-	public String getPassword() {
-		return password;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
+
+	public List<Attivita> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(List<Attivita> activities) {
+		this.activities = activities;
+	}
+
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	} 
+
+	
 
 }

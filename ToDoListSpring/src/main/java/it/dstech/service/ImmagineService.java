@@ -1,12 +1,18 @@
 package it.dstech.service;
 
-import org.springframework.web.multipart.MultipartFile;
-import it.dstech.models.Immagine;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface ImmagineService {
+import it.dstech.models.User;
+import it.dstech.repository.ImmagineRepository;
 
-	public Immagine salvaFile(MultipartFile file); // upload
+@Service
+public class ImmagineService {
 
-	public Immagine recuperaFile(Long fileId); // download
+    @Autowired
+    private ImmagineRepository immagineRepository;
 
+    public User getFile(Long id) {
+        return immagineRepository.findById(id).orElseThrow(() -> null);
+    }
 }

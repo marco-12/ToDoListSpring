@@ -1,18 +1,21 @@
 package it.dstech.service;
 
-import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import it.dstech.models.Attivita;
 import it.dstech.models.User;
 
-public interface UserService {
-	List<User> findAll();
 
-	Long count();
+public interface UserService extends UserDetailsService {
 
-	void deleteById(Long userId);
+    User findByEmail(String email);
 
-	void add(User user);
-
-	boolean findByUsername(User user);
+    User save(User registration);
+    
+    Long count();
+    
+    void deleteById(Long userId);
+    
+    void addActivities(User user, Attivita attivita);
 	
-	boolean findByUsernameOrEmail(User user);
 }
