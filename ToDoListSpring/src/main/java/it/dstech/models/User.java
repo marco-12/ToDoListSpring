@@ -50,8 +50,7 @@ public class User {
     @JoinTable(name = "users_activities",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "activity_id"))
     private List<Attivita> activities;
 	
-	@Transient
-    private MultipartFile image;
+
 
 	public Long getId() {
 		return id;
@@ -101,13 +100,6 @@ public class User {
 		this.activities = activities;
 	}
 
-	public MultipartFile getImage() {
-		return image;
-	}
-
-	public void setImage(MultipartFile image) {
-		this.image = image;
-	} 
 
 	
 

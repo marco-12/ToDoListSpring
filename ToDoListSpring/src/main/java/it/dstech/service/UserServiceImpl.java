@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User save(User registration) {
+	public User save(UserRegistrationDao registration) {
 		// TODO Auto-generated method stub
 	    User user = new User();
 	    user.setEmail(registration.getEmail()); 

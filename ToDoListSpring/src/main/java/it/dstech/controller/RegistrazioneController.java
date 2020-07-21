@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import it.dstech.models.User;
 import it.dstech.service.MailService;
+import it.dstech.service.UserRegistrationDao;
 import it.dstech.service.UserService;
 
 @Controller
@@ -27,8 +28,8 @@ public class RegistrazioneController {
 	private MailService mailService;
 
     @ModelAttribute("user")
-    public User userRegistration() {
-        return new User();
+    public UserRegistrationDao userRegistrationDto() {
+        return new UserRegistrationDao();
     }
 
     @GetMapping
@@ -37,8 +38,8 @@ public class RegistrazioneController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) throws MessagingException, IOException {
-        User existing = userService.findByEmail(user.getEmail());
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDao userDto, BindingResult result, Model model) throws MessagingException, IOException {
+        User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
@@ -47,10 +48,10 @@ public class RegistrazioneController {
             return "error";
         }
 
-        userService.save(user);
-        mailService.inviaMail(user.getEmail(), "Confirm registration", "User has been registered successfully");
-        model.addAttribute("successMessage", "User has been registered successfully, go back to login page");
-		return "registration";
+        userService.save(userDto);
+        mailService.inviaMail(userDto.getEmail(), "Registrazione confermata", "L'utente è stato registrato con successo");
+        model.addAttribute("successMessage", "L'utente è stato registrato con successo, torna alla pagina di login");
+		return "login";
     }
     
 }

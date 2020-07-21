@@ -5,14 +5,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="../../../css/screen.css" th:href="@{/css/screen.css}" />	
+<!--     <link rel="stylesheet" href="../../../css/screen.css" th:href="@{/css/screen.css}" />	 -->
 	<title>Homepage</title>
 </head>
 
 <body>
 	<div class="container">
 		<h2>Home page</h2>
-		<h1 th:text="'Welcome, ' + ${authUser} + '!'">Welcome!</h1> Click here for <a th:href="@{/logout}">Logout</a>
+		<h1 th:text="'Benvenuto, ' + ${authUser} + '!'">Benvenuto!</h1> Clicca qui per <a th:href="@{/logout}">il Logout</a>
 		<img class="rounded-circle" th:src="${authUserImage} == null ? _ : @{'data:image/png;base64,'+${authUserImage}}" style="width:100px;">
 
 		<h2>Activity Form</h2>
@@ -46,10 +46,6 @@
 				</tbody>
 			</table>
 		</div>
-		<script type="text/javascript"
-			th:src="@{/webjars/jquery/3.4.1/jquery.min.js/}"></script>
-		<script type="text/javascript"
-			th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 </body>
 
 </html>

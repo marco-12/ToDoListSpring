@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="../../../css/screen.css" th:href="@{/css/screen.css}" />
+<!--     <link rel="stylesheet" href="../../../css/screen.css" th:href="@{/css/screen.css}" /> -->
     <title>Accedi</title>
 </head>
 <body>
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-md-6 col-md-offset-3 my-auto">
-            	<div class="form-container">
+    <div class="container">
+<!--         <div class="row h-100 justify-content-center align-items-center"> -->
+<!--             <div class="col-md-6 col-md-offset-3 my-auto"> -->
+<!--             	<div class="form-container"> -->
 	                <h1>Pagina di accesso</h1>
 	                <form th:action="@{/login}" method="post">
 	                    <div th:if="${param.error}">
@@ -40,15 +40,14 @@
 	                    <div class="form-group">
 	                        <span>Non sei registrato? <a href="/" th:href="@{/registration}">Registrati qui</a></span>
 	                    </div>
+	                    <h2><span class="text-success" th:utext="${messaggio}"></span></h2>
 	                </form>            	
             	</div>
-            </div>
-        </div>
+<!--             </div> -->
+<!--         </div> -->
 
 
-    </div>
+<!--     </div> -->
 
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js/}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 </body>
 </html>
