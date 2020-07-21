@@ -4,17 +4,17 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" />
-<!--     <link rel="stylesheet" href="../../../css/screen.css" th:href="@{/css/screen.css}" />	 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
 	<title>Homepage</title>
 </head>
 
 <body>
 	<div class="container">
 		<h2>Home page</h2>
-		<h1 th:text="'Benvenuto, ' + ${authUser} + '!'">Benvenuto!</h1> Clicca qui per <a th:href="@{/logout}">il Logout</a>
+		<h1 th:text="'Benvenuto, ' + ${authUser} + '!'">Benvenuto!</h1>
 		<img class="rounded-circle" th:src="${authUserImage} == null ? _ : @{'data:image/png;base64,'+${authUserImage}}" style="width:100px;">
-
+		 <br>Clicca qui per <a th:href="@{/logout}">il Logout</a><br>
 		<h2>Activity Form</h2>
 
 		<form action="#" th:action="@{/save}" th:object="${activity}" method="post">
